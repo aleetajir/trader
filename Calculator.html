@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+  <meta charset="UTF-8">
+  <title>Rate Calculator</title>
+  <style>
+    body {
+      direction: rtl;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
+      color: #fff;
+      padding: 30px;
+    }
+    h1 {
+      color: gold;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .item {
+      background-color: #1e1e1e;
+      border-right: 5px solid gold;
+      padding: 20px;
+      margin: 15px auto;
+      border-radius: 10px;
+      max-width: 500px;
+      box-shadow: 0 2px 10px rgba(255, 215, 0, 0.1);
+    }
+    label, input {
+      display: block;
+      width: 100%;
+      margin: 8px 0;
+    }
+    input[type="number"] {
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+    }
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #00ffff;
+    }
+@media (max-width: 768px) { 
+  .menu-btn {
+    display: flex;
+  }
+
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: #fcf808;
+    padding: 10px 0;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    z-index: 99;
+  }
+
+  nav.active {
+    display: flex;
+  }
+}
+
+    
+ </style>
+</head>
+<body>
+
+<header>
+  <h1>About Alee Tajir</h1>
+  <p>Trade Smart. Trade Secure</p>
+</header>
+
+<nav>
+  <a href="home.html">Home</a>
+  <a href="lessons.html">Lessons</a>
+  <a href="market.html">Market</a>
+  <a href="calculator.html">Calculator</a>
+  <a href="about.html">About</a>
+</nav>
+
+
+<h1>Rate Calculator</h1>
+
+<div class="item">
+  <label>شے کا نام: سونا</label>
+  <label>فی تولہ قیمت (PKR):</label>
+  <input type="number" id="goldRate" placeholder="مثلاً: 359800">
+  <label>تولہ:</label>
+  <input type="number" id="goldQty" placeholder="مثلاً: 2">
+  <div class="result" id="goldTotal">کل: ₨ 0</div>
+</div>
+
+<div class="item">
+  <label>شے کا نام: چینی</label>
+  <label>فی کلو قیمت (PKR):</label>
+  <input type="number" id="sugarRate" placeholder="مثلاً: 145">
+  <label>کلوگرام:</label>
+  <input type="number" id="sugarQty" placeholder="مثلاً: 5">
+  <div class="result" id="sugarTotal">کل: ₨ 0</div>
+</div>
+
+<div class="item">
+  <label>شے کا نام: گندم</label>
+  <label>فی 40 کلو قیمت (PKR):</label>
+  <input type="number" id="wheatRate" placeholder="مثلاً: 2400">
+  <label>کتنی 40 کلو بوری؟</label>
+  <input type="number" id="wheatQty" placeholder="مثلاً: 3">
+  <div class="result" id="wheatTotal">کل: ₨ 0</div>
+</div>
+
+<div class="item">
+  <label>شے کا نام: پٹرول</label>
+  <label>فی لیٹر قیمت (PKR):</label>
+  <input type="number" id="petrolRate" placeholder="مثلاً: 272.15">
+  <label>لیٹر:</label>
+  <input type="number" id="petrolQty" placeholder="مثلاً: 20">
+  <div class="result" id="petrolTotal">کل: ₨ 0</div>
+</div>
+
+<div class="item">
+  <label>شے کا نام: ڈیزل</label>
+  <label>فی لیٹر قیمت (PKR):</label>
+  <input type="number" id="dieselRate" placeholder="مثلاً: 284.35">
+  <label>لیٹر:</label>
+  <input type="number" id="dieselQty" placeholder="مثلاً: 15">
+  <div class="result" id="dieselTotal">کل: ₨ 0</div>
+</div>
+
+<script>
+  const calculate = (rateId, qtyId, resultId) => {
+    const rate = parseFloat(document.getElementById(rateId).value) || 0;
+    const qty = parseFloat(document.getElementById(qtyId).value) || 0;
+    const total = rate * qty;
+    document.getElementById(resultId).innerText = "کل: ₨ " + total.toLocaleString();
+  };
+
+  const items = [
+    ['goldRate', 'goldQty', 'goldTotal'],
+    ['sugarRate', 'sugarQty', 'sugarTotal'],
+    ['wheatRate', 'wheatQty', 'wheatTotal'],
+    ['petrolRate', 'petrolQty', 'petrolTotal'],
+    ['dieselRate', 'dieselQty', 'dieselTotal']
+  ];
+
+  items.forEach(([rateId, qtyId, resultId]) => {
+    document.getElementById(rateId).addEventListener('input', () => calculate(rateId, qtyId, resultId));
+    document.getElementById(qtyId).addEventListener('input', () => calculate(rateId, qtyId, resultId));
+  });
+</script>
+
+</body>
+</html>
